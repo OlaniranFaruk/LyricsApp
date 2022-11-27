@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Lyricist.View.HomePage"
+             Title="{Binding PageTitle}">
+
+    <StackLayout Orientation="Vertical">
+        <StackLayout Orientation="Horizontal">
+
+            <Button Text="Add new lyrics"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center" 
+                    Clicked="openNewMusicPage" />
+        </StackLayout>
+
+        <RefreshView Command="{Binding RefreshAsync}" IsRefreshing="{Binding IsBusy}">
+            <ListView x:Name="MusiclistView"  ItemSelected="openLyricsPage" SelectionMode="Single"  ItemsSource="{Binding MusicList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <HorizontalStackLayout>
+                                    <VerticalStackLayout>
+                                        <Image Source="music_icon.png" Aspect="AspectFit"/>
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout>
+                                        <Label Text="{Binding Title}" FontAttributes="Bold" FontFamily="Arial" FontSize="Subtitle" TextTransform="Uppercase"/>
+
+                                        <Label Text="{Binding Artist}" FontAttributes="Italic" FontSize="12"/>
+
+                                    </VerticalStackLayout>
+
+                                </HorizontalStackLayout>
+                            </StackLayout>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </RefreshView>
+    </StackLayout>
+</ContentPage>
