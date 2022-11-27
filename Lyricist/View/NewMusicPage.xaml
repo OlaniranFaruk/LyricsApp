@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Lyricist.View.NewMusicPage"
+             Title="{Binding PageTitle}">
+    <ScrollView Margin="20">
+        <VerticalStackLayout>
+            <Button Text="Create new music"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                  Clicked="newMusic" />
+            <HorizontalStackLayout>
+                <Label Text="Title: "/>
+                <Entry x:Name="musicTitle"
+               Placeholder="Enter Music Title"
+               Text="{Binding mTitle}" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label Text="Artist: "/>
+                <Entry x:Name="musicArtist"
+               Placeholder="Enter Music Artist"
+               Text="{Binding mArtist}" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label Text="Genre: "/>
+                <Entry x:Name="musicGenre"
+               Placeholder="Enter Music Genre"
+               Text="{Binding mGenre}" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label Text="Lyrics : "/>
+                <Editor 
+                Placeholder="Enter your lyrics"
+                AutoSize="TextChanges"
+                Text="{Binding mLyrics}"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>
