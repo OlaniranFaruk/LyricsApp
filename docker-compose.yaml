@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+
+  mysqlserver:
+    container_name: "mysqlserver"
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    volumes:
+      - mysqldata2:/var/lib/mysql
+    environment:
+       MYSQL_ROOT_PASSWORD: pw
+       MYSQL_DATABASE: lyrics
+       MYSQL_ROOT_HOST: '%'
+  api-services:
+    build: .
+    ports: 
+      - 8080:80
+
+volumes:
+  mysqldata2: 
