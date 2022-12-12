@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Lyricist.ViewModel
 {
-    internal class HomePageViewModel: BaseViewModel
+    public  class HomePageViewModel: BaseViewModel
     {
         
         public ObservableCollection<Music> MusicList { get; set; } = new ObservableCollection<Music>();
-        public ObservableCollection<string> ListOfGenre { get; set; } = new ObservableCollection<string>();
+        public ObservableCollection<String> ListOfGenre { get; set; } = new ObservableCollection<String>();
         public Music selectedMusic;
 
         
@@ -25,8 +25,9 @@ namespace Lyricist.ViewModel
             MusicList = DataStore.MusicList;
         }
 
-        async public void GetGenreListAsync()
+        async public Task GetGenreListAsync()
         {
+            await DataStore.GetAllUniqueGenre();
             ListOfGenre = DataStore.GenreList;
         }
         

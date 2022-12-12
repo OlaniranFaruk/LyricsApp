@@ -11,6 +11,9 @@
                     VerticalOptions="Center"
                     HorizontalOptions="Center" 
                     Clicked="openNewMusicPage" />
+            <Picker Title="Filter by genre"
+                ItemsSource="{Binding ListOfGenre}"
+                SelectedIndexChanged="OnGenre_SelectedIndexChanged" />
         </StackLayout>
 
         <RefreshView Command="{Binding RefreshAsync}" IsRefreshing="{Binding IsBusy}">

@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace Lyricist.ViewModel
 {
-    internal interface IDataStore
+    public interface IDataStore
     {
         ObservableCollection<Music> MusicList { get; set; }
         public ObservableCollection<string> GenreList { get; set; }
         Task GetMusicListAsync();
         Task AddMusicAsync(Music music); 
         Task DeleteMusicAsync(Music music);
-        Task<int> GetAmntOfMusicAvailableAsync();
+        int GetAmntOfMusicAvailableAsync();
 
-        Task<ObservableCollection<string>> GetAllUniqueGenre();
+        Task GetAllUniqueGenre();
     }
 }
