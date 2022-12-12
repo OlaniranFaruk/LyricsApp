@@ -9,7 +9,8 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-		DependencyService.Register<ApiDataStore>();
-		MainPage = new NavigationPage( new HomePage());
+        DependencyService.Register<ApiDataStore>();
+        //DependencyService.Register<MySqlDatastore>();
+        MainPage = new NavigationPage( new HomePage());
 	}
 }

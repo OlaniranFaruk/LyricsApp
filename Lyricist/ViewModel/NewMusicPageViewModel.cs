@@ -20,7 +20,7 @@ namespace Lyricist.ViewModel
             {
                 DataStore.MusicList.Clear();
                 Music m = new Music(mTitle, mArtist, mGenre, mLyrics);
-                DataStore.AddMusicAsync(m);
+                await DataStore.AddMusicAsync(m);
                 mTitle = "";
                 mArtist = "";
                 mGenre = "";

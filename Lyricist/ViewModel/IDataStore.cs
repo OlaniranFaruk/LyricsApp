@@ -15,6 +15,7 @@ namespace Lyricist.ViewModel
         Task GetMusicListAsync();
         Task AddMusicAsync(Music music); 
         Task DeleteMusicAsync(Music music);
+        Task<int> GetAmntOfMusicAvailableAsync();
 
         Task<ObservableCollection<string>> GetAllUniqueGenre();
     }
