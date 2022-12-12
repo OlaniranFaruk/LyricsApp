@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Lyricist.ViewModel
 {
-    internal class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : INotifyPropertyChanged
     {
         public IDataStore DataStore => DependencyService.Get<IDataStore>();
 

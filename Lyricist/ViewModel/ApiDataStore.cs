@@ -15,7 +15,7 @@ namespace Lyricist.ViewModel
         Music Mock2 = new Music("im still", "juice wrld", "rap", "lyrics2");
         Music Mock3 = new Music("Mrs. Davies", "Gucci mane", "pop", "Lyrics3"); 
         public ObservableCollection<Music> MusicList { get; set; }
-        public ObservableCollection<string> GenreList { get; set; }
+        public ObservableCollection<String> GenreList { get; set; }
 
         private readonly String URL = "http://10.0.2.2:8080/api/lyrics";
 
@@ -42,7 +42,7 @@ namespace Lyricist.ViewModel
            MusicList.Add(Mock2);
            MusicList.Add(Mock1);
            MusicList.Add(Mock3); 
-            */ 
+           */  
 
             
            HttpClient client = new HttpClient();
@@ -55,19 +55,26 @@ namespace Lyricist.ViewModel
             foreach (Music music in list)
             {
                 MusicList.Add(music);
-            }
+            } 
           
         }
 
-        public async Task<int> GetAmntOfMusicAvailableAsync()
+        public int GetAmntOfMusicAvailableAsync()
         {
-            await GetMusicListAsync();
+            
             return MusicList.Count;
         }
 
-        public Task<ObservableCollection<string>> GetAllUniqueGenre()
+        public async Task GetAllUniqueGenre()
         {
-            throw new NotImplementedException();
+            GenreList.Add("All");
+            foreach (var music in MusicList)
+            {
+                if(!GenreList.Contains(music.Genre))
+                {
+                    GenreList.Add(music.Genre);
+                }
+            }
         }
     }
 }

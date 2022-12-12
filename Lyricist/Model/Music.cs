@@ -21,7 +21,7 @@ namespace Lyricist.Model
             Genre = "Genre: "  + genre;
             Lyrics = lyrics;
         }   
-        Music()
+        public Music()
         { }
     }
 }
