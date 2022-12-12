@@ -1,15 +1,26 @@
+using Lyricist.Model;
 using Lyricist.ViewModel;
 
 namespace Lyricist.View;
 
 public partial class DetailsPage : ContentPage
 {
-	BaseViewModel BVM;
-    public DetailsPage()
+	DetailsPageViewModel DPVM;
+	Music toBeDeleted;
+    public DetailsPage(Music m)
 	{
 		InitializeComponent();
-		BVM = new BaseViewModel();
-		BVM.PageTitle = "Lyrics page";
+		toBeDeleted = m as Music;
+		DPVM = new DetailsPageViewModel();
+		DPVM.PageTitle = "Lyrics page";
+
+		
 	}
+	public async void deleteMusic(object sender, EventArgs args)
+	{
+		DPVM.removeMusic(toBeDeleted);
+        await Navigation.PopAsync();
+    }
+    
 
 }

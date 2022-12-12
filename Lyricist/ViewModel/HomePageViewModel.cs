@@ -18,12 +18,6 @@ namespace Lyricist.ViewModel
 
         
 
-        async void RefreshAsync()
-        {
-            IsBusy= true;
-            await GetDataAsync();
-            IsBusy= false;
-        }
 
         async public Task  GetDataAsync()
         {

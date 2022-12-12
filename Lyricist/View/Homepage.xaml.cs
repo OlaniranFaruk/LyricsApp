@@ -16,6 +16,13 @@ public partial class HomePage : ContentPage
         HVM.PageTitle = "Music List";
         BindingContext = HVM;
 	}
+    async void RefreshAsync()
+    {
+        IsBusy = true;
+        //await HVM.GetDataAsync();
+        IsBusy = false;
+    }
+
 
     public async void openNewMusicPage(object sender, EventArgs args)
     {
@@ -26,7 +33,7 @@ public partial class HomePage : ContentPage
     {
        
         HVM.selectedMusic = args.SelectedItem as Music;
-        await App.Current.MainPage.Navigation.PushAsync(new DetailsPage()
+        await App.Current.MainPage.Navigation.PushAsync(new DetailsPage(HVM.selectedMusic)
         {
             BindingContext = HVM.selectedMusic
 

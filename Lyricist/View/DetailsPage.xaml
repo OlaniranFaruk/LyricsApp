@@ -4,6 +4,10 @@
              x:Class="Lyricist.View.DetailsPage"
              Title="Details Page">
     <VerticalStackLayout>
+        <Button Text="Delete music"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                  Clicked="deleteMusic" />
         <Label 
             Text="{Binding Title}"
             FontFamily="Arial" 
