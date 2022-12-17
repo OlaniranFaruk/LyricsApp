@@ -19,6 +19,7 @@ namespace Lyricist.ViewModel
             if (mTitle != "" && mArtist != "" && mGenre != "" && mLyrics != "")
             {
                 DataStore.MusicList.Clear();
+                DataStore.GenreList.Clear();
                 Music m = new Music(mTitle, mArtist, mGenre, mLyrics);
                 await DataStore.AddMusicAsync(m);
                 mTitle = "";
@@ -26,6 +27,7 @@ namespace Lyricist.ViewModel
                 mGenre = "";
                 mLyrics = "";
                 await DataStore.GetMusicListAsync();
+                await DataStore.GetAllUniqueGenre();
                 await App.Current.MainPage.Navigation.PopAsync();
             }
         }

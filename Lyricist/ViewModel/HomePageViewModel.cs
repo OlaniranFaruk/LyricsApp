@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Lyricist.ViewModel
 {
@@ -15,9 +16,15 @@ namespace Lyricist.ViewModel
         public ObservableCollection<Music> MusicList { get; set; } = new ObservableCollection<Music>();
         public ObservableCollection<String> ListOfGenre { get; set; } = new ObservableCollection<String>();
         public Music selectedMusic;
+        public Command RefreshAsync { get; set; }
 
-        
-
+        public async void RefreshAsyncFunc()
+        {
+            IsBusy = true;
+            await GetDataAsync();
+            await GetGenreListAsync();
+            IsBusy = false;
+        }
 
         async public Task  GetDataAsync()
         {

@@ -12,18 +12,14 @@ public partial class HomePage : ContentPage
 	{
 		InitializeComponent();
 		HVM= new HomePageViewModel();
+
+        HVM.RefreshAsync = new Command(HVM.RefreshAsyncFunc);
 		HVM.GetDataAsync();
 		HVM.GetGenreListAsync();
         HVM.PageTitle = "Music List";
         BindingContext = HVM;
 	}
-    async void RefreshAsync()
-    {
-        IsBusy = true;
-        await HVM.GetDataAsync();
-        await HVM.GetGenreListAsync();
-        IsBusy = false;
-    }
+
 
     async void OnGenre_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -37,9 +33,11 @@ public partial class HomePage : ContentPage
             //first index is reserved to return back all
             if(selectedIndex == 0)
             {
+                HVM.MusicList.Clear();
                 await HVM.GetDataAsync();
                 return;
             }
+            HVM.MusicList.Clear();
             await HVM.GetDataAsync();
             selectedGenre = picker.Items[selectedIndex];
             List<Music> genreEditedList = HVM.MusicList.Where(m => m.Genre.Equals(selectedGenre)).ToList<Music>();
@@ -51,6 +49,7 @@ public partial class HomePage : ContentPage
         }
         else
         {
+            HVM.MusicList.Clear();
             await HVM.GetDataAsync();
         }
     }
@@ -63,10 +62,13 @@ public partial class HomePage : ContentPage
     {
        
         HVM.selectedMusic = args.SelectedItem as Music;
+        
         await App.Current.MainPage.Navigation.PushAsync(new DetailsPage(HVM.selectedMusic)
         {
             BindingContext = HVM.selectedMusic
 
         });
+
+        
     }
 }

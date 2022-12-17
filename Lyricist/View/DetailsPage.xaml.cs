@@ -6,6 +6,7 @@ namespace Lyricist.View;
 public partial class DetailsPage : ContentPage
 {
 	DetailsPageViewModel DPVM;
+	HomePageViewModel HPVM;
 	Music toBeDeleted;
     public DetailsPage(Music m)
 	{
@@ -19,6 +20,8 @@ public partial class DetailsPage : ContentPage
 	public async void deleteMusic(object sender, EventArgs args)
 	{
 		DPVM.removeMusic(toBeDeleted);
+        await DPVM.DataStore.GetMusicListAsync();
+        await DPVM.DataStore.GetAllUniqueGenre();
         await Navigation.PopAsync();
     }
     

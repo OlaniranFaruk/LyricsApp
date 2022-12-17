@@ -18,6 +18,7 @@ namespace Lyricist.ViewModel
         public ObservableCollection<String> GenreList { get; set; }
 
         private readonly String URL = "http://10.0.2.2:8080/api/lyrics";
+        HttpClient client = new HttpClient();
 
         public ApiDataStore() {
             MusicList = new ObservableCollection<Music>();
@@ -28,12 +29,14 @@ namespace Lyricist.ViewModel
 
         public async Task AddMusicAsync(Music music)
         {
-            MusicList.Add(music);
+            var m = JsonConvert.SerializeObject(music);
+            HttpContent content =new StringContent(m.ToString(), Encoding.UTF8, "application/json");
+            await client.PostAsync(URL, content);
         }
 
         public async Task DeleteMusicAsync(Music music)
         {
-            MusicList.Remove(music);
+            await client.DeleteAsync(URL+"/"+music.id);
         }
 
         public async Task GetMusicListAsync()
@@ -45,8 +48,7 @@ namespace Lyricist.ViewModel
            */  
 
             
-           HttpClient client = new HttpClient();
-           var response = await client.GetStringAsync(URL);
+           var response = client.GetStringAsync(URL).GetAwaiter().GetResult();
             //List<Music> list = new List<Music>();
 
           var list = JsonConvert.DeserializeObject<List<Music>>(response);
@@ -67,6 +69,7 @@ namespace Lyricist.ViewModel
 
         public async Task GetAllUniqueGenre()
         {
+            GenreList.Clear();
             GenreList.Add("All");
             foreach (var music in MusicList)
             {

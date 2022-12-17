@@ -8,6 +8,7 @@ namespace Lyricist.Model
 {
     public class Music
     {
+        public int id { get; set; }
         public string Title { get; set; }
         public string Artist { get; set; }
         public string Genre { get; set; }
@@ -17,8 +18,8 @@ namespace Lyricist.Model
         public Music(string title, string artist, string genre, string lyrics)
         {
             Title = title;
-            Artist = "Artist: " + artist;
-            Genre = "Genre: "  + genre;
+            Artist = artist;
+            Genre =  genre;
             Lyrics = lyrics;
         }   
         public Music()
