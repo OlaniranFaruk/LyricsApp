@@ -11,7 +11,8 @@ namespace Lyricist.ViewModel
     {
         async public void removeMusic(Music m)
         { 
-            DataStore.DeleteMusicAsync(m);
+            await DataStore.DeleteMusicAsync(m);
+           
         }
     }
 }

@@ -6,6 +6,7 @@ namespace Lyricist.View;
 public partial class NewMusicPage : ContentPage
 {
 	NewMusicPageViewModel NMVM;
+	HomePageViewModel HPVM;
     public NewMusicPage()
 	{
 		InitializeComponent();
@@ -16,6 +17,8 @@ public partial class NewMusicPage : ContentPage
 	}
 	public async void newMusic(object sender, EventArgs args)
 	{
+		
         await NMVM.addNewMusic();
+
 	}
 }

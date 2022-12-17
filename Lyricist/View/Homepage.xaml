@@ -17,7 +17,7 @@
         </StackLayout>
 
         <RefreshView Command="{Binding RefreshAsync}" IsRefreshing="{Binding IsBusy}">
-            <ListView x:Name="MusiclistView"  ItemSelected="openLyricsPage" SelectionMode="Single"  ItemsSource="{Binding MusicList}">
+            <ListView x:Name="MusiclistView" SelectedItem="selectedMusic" ItemSelected="openLyricsPage" SelectionMode="Single"  ItemsSource="{Binding MusicList}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
